@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragment/base :: parent(~{::#content}, ~{::title})}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Register page</title>
+</head>
+<body>
+    <div id="content" class="container">
+        <div class="grid grid-cols items-center justify-center">
+            <h1 class="text-xl font-bold text-indigo-500">Register new user</h1>
+            <div th:if="${error}" class="text-red-500 text-md p-5 border border-red-700 rounded-md">
+                <span th:text="${error}"></span>
+            </div>
+            <div th:if="${success}" class="text-emerald-500 text-md p-5 border border-emerald-700 rounded-md">
+                <span th:text="${success}"></span>
+            </div>
+            <form th:action="@{'/auth/register'}" method="post" th:object="${registerUserDto}">
+                <div class="mb-3">
+                    <label class="text-md" for="username">Username</label>
+                    <input
+                            type="text"
+                            th:field="*{username}"
+                            class="w-full border border-slate-200/50 rounded-md px-2 py-1"
+                            id="username"
+                    >
+                    <div th:if="${#fields.hasErrors('username')}"
+                         th:errors="*{username}" class="text-red-500 text-sm"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-md" for="email">Email</label>
+                    <input
+                            type="email"
+                            th:field="*{email}"
+                            class="w-full border border-slate-200/50 rounded-md px-2 py-1"
+                            id="email"
+                    >
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-500 text-sm"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-md" for="fullName">Full name</label>
+                    <input
+                            type="text"
+                            th:field="*{fullName}"
+                            class="w-full border border-slate-200/50 rounded-md px-2 py-1"
+                            id="fullName"
+                    >
+                    <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="text-red-500 text-sm"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-md" for="password">Password</label>
+                    <input
+                            type="password"
+                            th:field="*{password}"
+                            class="w-full border border-slate-200/50 rounded-md px-2 py-1"
+                            id="password"
+                    >
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red-500 text-sm"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-md" for="confirmPassword">Confirm Password</label>
+                    <input
+                            type="password"
+                            th:field="*{confirmPassword}"
+                            class="w-full border border-slate-200/50 rounded-md px-2 py-1"
+                            id="confirmPassword"
+                    >
+                    <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="text-red-500 text-sm"></div>
+                </div>
+                <button type="submit" class="px-2 py-1 rounded-md bg-indigo-500">Save</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

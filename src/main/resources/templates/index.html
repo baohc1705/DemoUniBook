@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragment/base :: parent(~{::#content}, ~{::title})}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>Danh sach role</h1>
-<p>Hello <span th:text="${name}"></span> </p>
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>Ten role</th>
-            <th>Mo ta</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="role : ${roles}">
-            <td th:text="${role.name}"></td>
-            <td th:text="${role.description}"></td>
-        </tr>
-    </tbody>
-</table>
+<div id="content">
+    <h1>Xin chao day la home page</h1>
+    <div th:text="${msgSuccess}" class="text-md font-semibold text-violet-500"></div>
+</div>
 </body>
 </html>
